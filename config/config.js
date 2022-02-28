@@ -1,7 +1,5 @@
-import firebase from 'firebase';
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const config = {
+export const config = {
     apiKey: "AIzaSyDo3xbCPiibR3iipVejuNpm2jEMfjpJtCs",
     authDomain: "fir-recipes-eaba0.firebaseapp.com",
     databaseURL: "https://fir-recipes-eaba0-default-rtdb.firebaseio.com",
@@ -12,4 +10,4 @@ const config = {
     measurementId: "G-5EE408RC7M"
   };
 
-  firebase.initializeApp(config);
+  
