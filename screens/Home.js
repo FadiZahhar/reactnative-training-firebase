@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {
   getPopularMovies,
   getUpcomingMovies,
   getPopularTV,
 } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
+import react from 'react';
 
 const Home = () => {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [moviesImages, setMoviesImages] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -30,22 +32,40 @@ const Home = () => {
       });
 
     getPopularMovies()
-      .then(movies => {})
+      .then(movies => {
+        setPopularMovies(movies);
+      })
       .catch(err => {
         setError(err);
       });
   }, []);
+  const Item = ({title}) => (
+    <View>
+      <Text>{title}</Text>
+    </View>
+  );
+  const renderItem = ({item}) => <Item title={item.title} />;
 
   return (
-    <View style={styles.sliderContainer}>
-      <SliderBox
-        images={moviesImages}
-        sliderBoxHeight={(windowHeight * 2) / 3}
-        dotStyle={styles.sliderStyle}
-        autoplay={true}
-        circleLoop={true}
-      />
-    </View>
+    <react.Fragment>
+      <View style={styles.sliderContainer}>
+        <SliderBox
+          images={moviesImages}
+          sliderBoxHeight={(windowHeight * 2) / 3}
+          dotStyle={styles.sliderStyle}
+          autoplay={true}
+          circleLoop={true}
+        />
+      </View>
+      <View style={styles.carousel}>
+        <FlatList
+          data={popularMovies}
+          renderItem={renderItem}
+          horizontal={true}
+          keyExtractor={item => item.id}
+        />
+      </View>
+    </react.Fragment>
   );
 };
 
@@ -59,7 +79,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'black',
-    marginTop: 10,
+  },
+  carousel: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
