@@ -61,7 +61,7 @@ const Home = () => {
         />
       </View> */}
       <View style={styles.carousel}>
-        <List title="Ali" content={popularMovies} />
+        <List title="Popular Movies" content={popularMovies} />
       </View>
     </react.Fragment>
   );
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
   },
   carousel: {
     flex: 1,

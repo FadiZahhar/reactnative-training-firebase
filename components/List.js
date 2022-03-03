@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
 import {Text, View, StyleSheet, FlatList} from 'react-native';
+import Card from './Card';
 
 const List = ({title, content}) => {
-  const Item = ({title}) => (
-    <View>
-      <Text>{title}</Text>
-    </View>
-  );
-  const renderItem = ({item}) => <Item title={item.title} />;
+  //   const Item = ({title}) => (
+  //     <View>
+  //       <Text>{title}</Text>
+  //     </View>
+  //   );
+  const renderItem = ({item}) => <Card item={item} />;
 
   return (
     <View style={styles.list}>
