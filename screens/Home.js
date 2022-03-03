@@ -8,6 +8,7 @@ import {
 } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import react from 'react';
+import List from '../components/List';
 
 const Home = () => {
   const windowWidth = Dimensions.get('window').width;
@@ -39,12 +40,6 @@ const Home = () => {
         setError(err);
       });
   }, []);
-  const Item = ({title}) => (
-    <View>
-      <Text>{title}</Text>
-    </View>
-  );
-  const renderItem = ({item}) => <Item title={item.title} />;
 
   return (
     <react.Fragment>
@@ -57,13 +52,16 @@ const Home = () => {
           circleLoop={true}
         />
       </View>
-      <View style={styles.carousel}>
+      {/* <View style={styles.carousel}>
         <FlatList
           data={popularMovies}
           renderItem={renderItem}
           horizontal={true}
           keyExtractor={item => item.id}
         />
+      </View> */}
+      <View style={styles.carousel}>
+        <List title="Ali" content={popularMovies} />
       </View>
     </react.Fragment>
   );
