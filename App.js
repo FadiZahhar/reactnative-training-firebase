@@ -5,18 +5,23 @@
  * @format
  * @flow strict-local
  */
-import 'react-native-gesture-handler';
 
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 
 import Home from './screens/Home';
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 const App = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Home />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
