@@ -1,7 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import PropTypes from 'prop-types';
 
 const placeHolderImage = require('../assets/images/placeholderImage.png');
+
+const propTypes = {
+  item: PropTypes.object,
+};
 const Card = ({item}) => {
   return (
     <TouchableOpacity style={styles.container}>
@@ -39,5 +44,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+Card.propTypes = propTypes;
 
 export default Card;
