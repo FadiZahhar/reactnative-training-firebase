@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet, ScrollView} from 'react-native';
 import {
   getPopularMovies,
   getUpcomingMovies,
@@ -43,16 +43,17 @@ const Home = () => {
 
   return (
     <react.Fragment>
-      <View style={styles.sliderContainer}>
-        <SliderBox
-          images={moviesImages}
-          sliderBoxHeight={(windowHeight * 2) / 3}
-          dotStyle={styles.sliderStyle}
-          autoplay={true}
-          circleLoop={true}
-        />
-      </View>
-      {/* <View style={styles.carousel}>
+      <ScrollView>
+        <View style={styles.sliderContainer}>
+          <SliderBox
+            images={moviesImages}
+            sliderBoxHeight={(windowHeight * 2) / 3}
+            dotStyle={styles.sliderStyle}
+            autoplay={true}
+            circleLoop={true}
+          />
+        </View>
+        {/* <View style={styles.carousel}>
         <FlatList
           data={popularMovies}
           renderItem={renderItem}
@@ -60,9 +61,10 @@ const Home = () => {
           keyExtractor={item => item.id}
         />
       </View> */}
-      <View style={styles.carousel}>
-        <List title="Popular Movies" content={popularMovies} />
-      </View>
+        <View style={styles.carousel}>
+          <List title="Popular Movies" content={popularMovies} />
+        </View>
+      </ScrollView>
     </react.Fragment>
   );
 };
