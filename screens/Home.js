@@ -13,7 +13,7 @@ import react from 'react';
 import List from '../components/List';
 import Error from '../components/Error';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [moviesImages, setMoviesImages] = useState();
@@ -142,25 +142,41 @@ const Home = () => {
       </View> */}
           {popularMovies && (
             <View style={styles.carousel}>
-              <List title="Popular Movies" content={popularMovies} />
+              <List
+                navigation={navigation}
+                title="Popular Movies"
+                content={popularMovies}
+              />
             </View>
           )}
 
           {popularTv && (
             <View style={styles.carousel}>
-              <List title="Popular TV Shows" content={popularTv} />
+              <List
+                navigation={navigation}
+                title="Popular TV Shows"
+                content={popularTv}
+              />
             </View>
           )}
 
           {familyMovies && (
             <View style={styles.carousel}>
-              <List title="Family Movies" content={familyMovies} />
+              <List
+                navigation={navigation}
+                title="Family Movies"
+                content={familyMovies}
+              />
             </View>
           )}
 
           {documentaries && (
             <View style={styles.carousel}>
-              <List title="Documentaries" content={documentaries} />
+              <List
+                navigation={navigation}
+                title="Documentaries"
+                content={documentaries}
+              />
             </View>
           )}
         </ScrollView>

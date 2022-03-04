@@ -9,14 +9,14 @@ const propTypes = {
   content: PropTypes.array,
 };
 
-const List = ({title, content}) => {
+const List = ({title, content, navigation}) => {
   //   const Item = ({title}) => (
   //     <View>
   //       <Text>{title}</Text>
   //     </View>
   //   );
 
-  const renderItem = ({item}) => <Card item={item} />;
+  const renderItem = ({item}) => <Card item={item} navigation={navigation} />;
 
   return (
     <View style={styles.list}>
