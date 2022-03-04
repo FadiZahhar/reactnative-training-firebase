@@ -1,19 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions} from 'react-native';
-import {
-  ActivityIndicator,
-  View,
-  StyleSheet,
-  ScrollView,
-  Text,
-} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
-const Detail = () => {
-  useEffect(() => {}, []);
+const Detail = ({route, navigation}) => {
+  const {movieDetail} = route.params;
 
   return (
     <React.Fragment>
-      <Text>{'movie details'}</Text>
+      <Text>{movieDetail.title}</Text>
     </React.Fragment>
   );
 };
