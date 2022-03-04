@@ -13,7 +13,7 @@ const Card = ({item, navigation}) => {
       style={styles.container}
       onPress={() =>
         navigation.navigate('Detail', {
-          movieDetail: item,
+          movieId: item.id,
         })
       }>
       <Image
