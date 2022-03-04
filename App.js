@@ -5,14 +5,10 @@
  * @format
  * @flow strict-local
  */
+import 'react-native-gesture-handler';
 
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
-import {
-  getPopularMovies,
-  getUpcomingMovies,
-  getPopularTV,
-} from './services/services';
 
 import Home from './screens/Home';
 
