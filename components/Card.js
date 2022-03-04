@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     height: 200,
     width: 120,
     borderRadius: 20,
-    opacity: 0.7,
+    //opacity: 0.7,
   },
   moviesTitle: {
     position: 'absolute',

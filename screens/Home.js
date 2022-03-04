@@ -5,6 +5,8 @@ import {
   getPopularMovies,
   getUpcomingMovies,
   getPopularTV,
+  getFamilyMovies,
+  getDocumentaries,
 } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import react from 'react';
@@ -15,9 +17,13 @@ const Home = () => {
   const windowHeight = Dimensions.get('window').height;
   const [moviesImages, setMoviesImages] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
+  const [popularTv, setPopularTv] = useState([]);
+  const [familyMovies, setFamilyMovies] = useState([]);
+  const [documentaries, setDocumentaries] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    /////////
     getUpcomingMovies()
       .then(movies => {
         const moviesImagesArray = [];
@@ -31,10 +37,34 @@ const Home = () => {
       .catch(err => {
         setError(err);
       });
-
+    ///////////
     getPopularMovies()
       .then(movies => {
         setPopularMovies(movies);
+      })
+      .catch(err => {
+        setError(err);
+      });
+    ///////////
+    getPopularTV()
+      .then(tv => {
+        setPopularTv(tv);
+      })
+      .catch(err => {
+        setError(err);
+      });
+    ///////////
+    getFamilyMovies()
+      .then(movies => {
+        setFamilyMovies(movies);
+      })
+      .catch(err => {
+        setError(err);
+      });
+    ///////////
+    getDocumentaries()
+      .then(movies => {
+        setDocumentaries(movies);
       })
       .catch(err => {
         setError(err);
@@ -63,6 +93,18 @@ const Home = () => {
       </View> */}
         <View style={styles.carousel}>
           <List title="Popular Movies" content={popularMovies} />
+        </View>
+
+        <View style={styles.carousel}>
+          <List title="Popular TV Shows" content={popularTv} />
+        </View>
+
+        <View style={styles.carousel}>
+          <List title="Family Movies" content={familyMovies} />
+        </View>
+
+        <View style={styles.carousel}>
+          <List title="Documentaries" content={documentaries} />
         </View>
       </ScrollView>
     </react.Fragment>
