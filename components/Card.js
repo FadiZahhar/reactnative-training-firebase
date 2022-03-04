@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import React from 'react';
+import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import PropTypes from 'prop-types';
 
 const placeHolderImage = require('../assets/images/placeholderImage.png');

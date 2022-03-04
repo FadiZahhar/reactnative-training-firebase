@@ -6,8 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
 
 import Home from './screens/Home';
 

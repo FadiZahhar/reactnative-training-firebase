@@ -1,12 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
-import {
-  ActivityIndicator,
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import {ActivityIndicator, View, StyleSheet, ScrollView} from 'react-native';
 import {
   getPopularMovies,
   getUpcomingMovies,
