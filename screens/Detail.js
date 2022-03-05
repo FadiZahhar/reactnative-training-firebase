@@ -12,6 +12,7 @@ import Error from '../components/Error';
 import {Dimensions} from 'react-native';
 import StarRating from 'react-native-star-rating';
 import dateFormat, {masks} from 'dateformat';
+import PlayButton from '../components/PlayButton';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -44,20 +45,26 @@ const Detail = ({route, navigation}) => {
     <React.Fragment>
       {!error && loaded && (
         <ScrollView>
-          <Image
-            style={styles.image}
-            resizeMode="cover"
-            source={
-              movieDetail.poster_path
-                ? {
-                    uri:
-                      'https://image.tmdb.org/t/p/w500' +
-                      movieDetail.poster_path,
-                  }
-                : placeHolderImage
-            }
-          />
+          <View>
+            <Image
+              style={styles.image}
+              resizeMode="cover"
+              source={
+                movieDetail.poster_path
+                  ? {
+                      uri:
+                        'https://image.tmdb.org/t/p/w500' +
+                        movieDetail.poster_path,
+                    }
+                  : placeHolderImage
+              }
+            />
+          </View>
+
           <View style={styles.container}>
+            <View style={styles.playButton}>
+              <PlayButton />
+            </View>
             <Text style={styles.movieTitle}>{movieDetail.title}</Text>
             {movieDetail.genres && (
               <View style={styles.genresContainer}>
@@ -124,6 +131,11 @@ const styles = StyleSheet.create({
   releaseDate: {
     color: 'black',
     fontWeight: 'bold',
+  },
+  playButton: {
+    position: 'absolute',
+    top: -25,
+    right: 20,
   },
 });
 
