@@ -18,6 +18,8 @@ import dateFormat, {masks} from 'dateformat';
 import PlayButton from '../components/PlayButton';
 import Video from '../components/Video';
 
+import Colors from '../theme/Colors';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const placeHolderImage = require('../assets/images/placeholderImage.png');
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   },
   movieTitle: {
     fontSize: 24,
-    color: 'black',
+    color: Colors.black,
     fontWeight: 'bold',
     marginTop: 10,
     marginBottom: 10,
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   releaseDate: {
-    color: 'black',
+    color: '#000000',
     fontWeight: 'bold',
   },
   playButton: {
