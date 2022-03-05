@@ -16,6 +16,7 @@ import {Dimensions} from 'react-native';
 import StarRating from 'react-native-star-rating';
 import dateFormat, {masks} from 'dateformat';
 import PlayButton from '../components/PlayButton';
+import VideoPlayer from 'react-native-video-controls';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -105,9 +106,14 @@ const Detail = ({route, navigation}) => {
             visible={modalVisible}
             onRequestClose={() => videoShown()}>
             <View style={styles.videoModel}>
-              <Pressable onPress={() => videoShown()}>
-                <Text>Hide Model</Text>
-              </Pressable>
+              <Pressable onPress={() => videoShown()}></Pressable>
+              <VideoPlayer
+                onBack={() => {
+                  videoShown();
+                }}
+                source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
+                navigator={navigation}
+              />
             </View>
           </Modal>
         </View>
