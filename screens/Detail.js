@@ -10,6 +10,7 @@ import {
 import {getMovie} from '../services/services';
 import Error from '../components/Error';
 import {Dimensions} from 'react-native';
+import StarRating from 'react-native-star-rating';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -68,6 +69,13 @@ const Detail = ({route, navigation}) => {
                 })}
               </View>
             )}
+            <StarRating
+              fullStarColor={'gold'}
+              starSize={25}
+              disabled={false}
+              maxStars={5}
+              rating={movieDetail.vote_average / 2}
+            />
           </View>
         </ScrollView>
       )}
@@ -98,6 +106,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 20,
+    marginBottom: 20,
   },
   genresText: {
     marginRight: 10,
