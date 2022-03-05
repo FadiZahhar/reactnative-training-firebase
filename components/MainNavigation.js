@@ -32,10 +32,10 @@ const MainNavigation = ({navigation}) => {
       <Stack.Screen
         name="Search"
         component={Search}
-        // options={{
-        //   headerTransparent: true,
-        //   header: ({navigation}) => <DetailNavbar navigation={navigation} />,
-        // }}
+        options={{
+          headerTransparent: true,
+          header: ({navigation}) => <DetailNavbar navigation={navigation} />,
+        }}
       />
     </Stack.Navigator>
   );
