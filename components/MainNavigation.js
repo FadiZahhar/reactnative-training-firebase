@@ -2,6 +2,7 @@ import React from 'react';
 
 import Home from '../screens/Home';
 import Detail from '../screens/Detail';
+import Search from '../screens/Search';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -27,6 +28,14 @@ const MainNavigation = ({navigation}) => {
           headerTransparent: true,
           header: ({navigation}) => <DetailNavbar navigation={navigation} />,
         }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        // options={{
+        //   headerTransparent: true,
+        //   header: ({navigation}) => <DetailNavbar navigation={navigation} />,
+        // }}
       />
     </Stack.Navigator>
   );
