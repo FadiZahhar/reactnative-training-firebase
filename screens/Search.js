@@ -8,35 +8,28 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {searchMovieTv} from '../services/services';
+import Card from '../components/Card';
 
-const Search = () => {
+const Search = ({navigation}) => {
   const [moviesTv, setMoviesTv] = useState();
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [text, onChangeText] = useState('');
 
   const handleSubmit = query => {
-    console.log(query);
+    searchMovieTv(query, 'movie')
+      .then(data => {
+        setMoviesTv(data);
+        console.log(data);
+      })
+      .catch(() => {
+        setError(true);
+      });
   };
-
-  //   const fetchData = () => {
-  //     return Promise.all([searchMovieTv()]);
-  //   };
-  //   useEffect(() => {
-  //     fetchData()
-  //       .then(([searchMovieTvData]) => {
-  //         setMoviesTv(searchMovieTvData);
-  //       })
-  //       .catch(() => {
-  //         setError(true);
-  //       })
-  //       .finally(() => {
-  //         setLoaded(true);
-  //       });
-  //   }, []);
 
   return (
     <React.Fragment>
@@ -57,6 +50,18 @@ const Search = () => {
             }}>
             <Icon name="search-outline" size={30} color="black" />
           </TouchableOpacity>
+        </View>
+        <View style={styles.searchItem}>
+          {moviesTv && moviesTv.length > 0 && (
+            <FlatList
+              data={moviesTv}
+              numColumns={3}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => (
+                <Card item={item} navigation={navigation} />
+              )}
+            />
+          )}
         </View>
       </SafeAreaView>
     </React.Fragment>
@@ -80,6 +85,9 @@ const styles = StyleSheet.create({
     flexBasis: 'auto',
     paddingRight: 8,
     flexGrow: 1,
+  },
+  searchItem: {
+    padding: 5,
   },
 });
 
