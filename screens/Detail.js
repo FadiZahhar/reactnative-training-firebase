@@ -6,6 +6,9 @@ import {
   Image,
   ActivityIndicator,
   View,
+  Modal,
+  Alert,
+  Pressable,
 } from 'react-native';
 import {getMovie} from '../services/services';
 import Error from '../components/Error';
@@ -25,7 +28,7 @@ const Detail = ({route, navigation}) => {
   const [loaded, setLoaded] = useState(false);
 
   const [movieDetail, setMovieDetail] = useState();
-
+  const [modalVisible, setModalVisible] = useState(false);
   const fetchData = () => {
     return Promise.all([getMovie(movieId)]);
   };
@@ -41,57 +44,73 @@ const Detail = ({route, navigation}) => {
         setLoaded(true);
       });
   }, []);
+
+  const videoShown = () => {
+    setModalVisible(!modalVisible);
+  };
   return (
     <React.Fragment>
       {!error && loaded && (
-        <ScrollView>
-          <View>
-            <Image
-              style={styles.image}
-              resizeMode="cover"
-              source={
-                movieDetail.poster_path
-                  ? {
-                      uri:
-                        'https://image.tmdb.org/t/p/w500' +
-                        movieDetail.poster_path,
-                    }
-                  : placeHolderImage
-              }
-            />
-          </View>
-
-          <View style={styles.container}>
-            <View style={styles.playButton}>
-              <PlayButton />
+        <View>
+          <ScrollView>
+            <View>
+              <Image
+                style={styles.image}
+                resizeMode="cover"
+                source={
+                  movieDetail.poster_path
+                    ? {
+                        uri:
+                          'https://image.tmdb.org/t/p/w500' +
+                          movieDetail.poster_path,
+                      }
+                    : placeHolderImage
+                }
+              />
             </View>
-            <Text style={styles.movieTitle}>{movieDetail.title}</Text>
-            {movieDetail.genres && (
-              <View style={styles.genresContainer}>
-                {movieDetail.genres.map(genre => {
-                  return (
-                    <Text key={genre.id} style={styles.genresText}>
-                      {genre.name}
-                    </Text>
-                  );
-                })}
-              </View>
-            )}
-            <StarRating
-              fullStarColor={'gold'}
-              starSize={25}
-              disabled={false}
-              maxStars={5}
-              rating={movieDetail.vote_average / 2}
-            />
 
-            <Text style={styles.desciption}>{movieDetail.overview}</Text>
-            <Text style={styles.releaseDate}>
-              {'Release date: ' +
-                dateFormat(movieDetail.release_date, 'mmmm dS, yyyy')}
-            </Text>
-          </View>
-        </ScrollView>
+            <View style={styles.container}>
+              <View style={styles.playButton}>
+                <PlayButton handlePress={videoShown} />
+              </View>
+              <Text style={styles.movieTitle}>{movieDetail.title}</Text>
+              {movieDetail.genres && (
+                <View style={styles.genresContainer}>
+                  {movieDetail.genres.map(genre => {
+                    return (
+                      <Text key={genre.id} style={styles.genresText}>
+                        {genre.name}
+                      </Text>
+                    );
+                  })}
+                </View>
+              )}
+              <StarRating
+                fullStarColor={'gold'}
+                starSize={25}
+                disabled={false}
+                maxStars={5}
+                rating={movieDetail.vote_average / 2}
+              />
+
+              <Text style={styles.desciption}>{movieDetail.overview}</Text>
+              <Text style={styles.releaseDate}>
+                {'Release date: ' +
+                  dateFormat(movieDetail.release_date, 'mmmm dS, yyyy')}
+              </Text>
+            </View>
+          </ScrollView>
+          <Modal
+            animationType="slide"
+            visible={modalVisible}
+            onRequestClose={() => videoShown()}>
+            <View style={styles.videoModel}>
+              <Pressable onPress={() => videoShown()}>
+                <Text>Hide Model</Text>
+              </Pressable>
+            </View>
+          </Modal>
+        </View>
       )}
       {!loaded && !error && <ActivityIndicator size="large" />}
       {error && <Error />}
@@ -136,6 +155,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -25,
     right: 20,
+  },
+  videoModel: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
