@@ -21,13 +21,16 @@ const Search = ({navigation}) => {
   const [text, onChangeText] = useState('');
 
   const handleSubmit = query => {
-    searchMovieTv(query, 'movie')
-      .then(data => {
-        setMoviesTv(data);
-        console.log(data);
+    Promise.all([searchMovieTv(query, 'movie'), searchMovieTv(query, 'tv')])
+      .then(([movie, tv]) => {
+        const moviesImagesArray = [...movie, ...tv];
+        setMoviesTv(moviesImagesArray);
       })
       .catch(() => {
         setError(true);
+      })
+      .finally(() => {
+        setLoaded(true);
       });
   };
 
