@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   ActivityIndicator,
+  View,
 } from 'react-native';
 import {getMovie} from '../services/services';
 import Error from '../components/Error';
@@ -54,6 +55,20 @@ const Detail = ({route, navigation}) => {
                 : placeHolderImage
             }
           />
+          <View style={styles.container}>
+            <Text style={styles.movieTitle}>{movieDetail.title}</Text>
+            {movieDetail.genres && (
+              <View style={styles.genresContainer}>
+                {movieDetail.genres.map(genre => {
+                  return (
+                    <Text key={genre.id} style={styles.genresText}>
+                      {genre.name}
+                    </Text>
+                  );
+                })}
+              </View>
+            )}
+          </View>
         </ScrollView>
       )}
       {!loaded && !error && <ActivityIndicator size="large" />}
@@ -63,12 +78,31 @@ const Detail = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  sliderStyle: {
-    width: 0,
-    height: 0,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     height: (windowHeight * 2) / 5,
+  },
+  movieTitle: {
+    fontSize: 24,
+    color: 'black',
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  genresContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  genresText: {
+    marginRight: 10,
+    color: 'black',
+    fontWeight: 'bold',
   },
 });
 
