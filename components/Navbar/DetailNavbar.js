@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-const Navbar = ({navigation}) => {
+const DetailNavbar = ({navigation}) => {
   return (
     <SafeAreaView>
       <View style={styles.nav}>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
 });
-export default Navbar;
+export default DetailNavbar;

@@ -14,7 +14,8 @@ import Detail from './screens/Detail';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Navbar from './components/Navbar';
+import DetailNavbar from './components/Navbar/DetailNavbar';
+import HomeNavbar from './components/Navbar/HomeNavbar';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           component={Home}
           options={{
             headerTransparent: true,
+            header: ({navigation}) => <HomeNavbar navigation={navigation} />,
           }}
         />
         <Stack.Screen
@@ -33,7 +35,7 @@ const App = () => {
           component={Detail}
           options={{
             headerTransparent: true,
-            header: ({navigation}) => <Navbar navigation={navigation} />,
+            header: ({navigation}) => <DetailNavbar navigation={navigation} />,
           }}
         />
       </Stack.Navigator>
